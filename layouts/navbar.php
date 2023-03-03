@@ -3,7 +3,7 @@
     <nav class="nav">
         <!-- Logo -->
         <div class="logo">
-            <a href="index2.html">
+            <a href="index.php">
                 <h1>Cambodia</h1>
             </a>
         </div>
@@ -12,22 +12,22 @@
             <!-- Center Nav -->
             <ul class="navbar">
                 <li>
-                    <a href="index2.html" class="active">Home</a>
+                    <a href="index.php" class="active">Home</a>
                 </li>
                 <li>
-                    <a href="./components/capital.html">Capital</a>
+                    <a href="capital.php">Capital</a>
                 </li>
                 <li>
-                    <a href="./components/city.html">City</a>
+                    <a href="city.php">City</a>
                 </li>
                 <li>
-                    <a href="./components/province.html">Province</a>
+                    <a href="province.php">Province</a>
                 </li>
                 <li>
-                    <a href="./components/about.html">About</a>
+                    <a href="about.php">About</a>
                 </li>
                 <li>
-                    <a href="./components/contact.html">Contact</a>
+                    <a href="contact.php">Contact</a>
                 </li>
             </ul>
             <!-- End of Center Nav -->
