@@ -7,13 +7,18 @@ include "layouts/navbar.php";
 <div class="img-container">
   <!-- Modal -->
   <div class="modal">
-    <h1>Welcome To Cambodia</h1>
-    <h2>Kingdom of Wonder</h2>
-    <p>
-      Angkor Wat is a temple complex in Cambodia and the largest religious
-      monument in the world...
-    </p>
-    <a href="#">Visit Now</a>
+
+    <?php
+    $query = "SELECT sl.description FROM sliders sl ORDER BY sl.id LIMIT 1";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo $row['description'];
+      }
+    }
+    ?>
+
   </div>
   <!-- End of Modal -->
 </div>
