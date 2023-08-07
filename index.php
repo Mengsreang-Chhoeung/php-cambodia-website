@@ -3,26 +3,28 @@ include "layouts/header.php";
 include "layouts/navbar.php";
 ?>
 
-<!-- Image Container -->
-<div class="img-container">
-  <!-- Modal -->
-  <div class="modal">
 
-    <?php
-    $query = "SELECT sl.description FROM sliders sl ORDER BY sl.id LIMIT 1";
-    $result = mysqli_query($conn, $query);
+<?php
+$query = "SELECT sl.description, sl.image FROM sliders sl ORDER BY sl.id LIMIT 1";
+$result = mysqli_query($conn, $query);
 
-    if (mysqli_num_rows($result) > 0) {
-      while ($row = mysqli_fetch_assoc($result)) {
-        echo $row['description'];
-      }
-    }
-    ?>
+if (mysqli_num_rows($result) > 0) {
+  while ($row = mysqli_fetch_assoc($result)) {
+?>
+    <!-- Image Container -->
+    <div class="img-container" style="background-image: url('./img/<?= $row['image']; ?>');">
+      <!-- Modal -->
+      <div class="modal">
+        <?= $row['description']; ?>
+      </div>
+      <!-- End of Modal -->
+    </div>
+    <!-- End of Image Container -->
+<?php
+  }
+}
+?>
 
-  </div>
-  <!-- End of Modal -->
-</div>
-<!-- End of Image Container -->
 <!-- Capital Section -->
 <section class="capital" id="capital">
   <!-- Title -->
