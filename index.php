@@ -34,23 +34,34 @@ if (mysqli_num_rows($result) > 0) {
   </div>
   <!-- End of Title -->
   <div class="detail">
-    <h1 class="detail-title">
-      Phnom Penh
-    </h1>
-    <img src="img/image-2.jpg" />
-    <p class="desc">
-      Phnom Penh, Cambodia’s busy capital, sits at the junction of the
-      Mekong and Tonlé Sap rivers. It was a hub for both the Khmer Empire
-      and French colonialists. On its walkable riverfront, lined with
-      parks, restaurants and bars, are the ornate Royal Palace, Silver
-      Pagoda and the National Museum, displaying artifacts from around the
-      country. At the city’s heart is the massive, art deco Central
-      Market.
-    </p>
+
+    <?php
+    $query = "SELECT cap.title, cap.description, cap.thumbnail FROM capitals cap ORDER BY cap.id LIMIT 1";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        $cap_title = $row['title'];
+        $cap_description = $row['description'];
+        $cap_thumbnail = $row['thumbnail'];
+    ?>
+        <h1 class="detail-title">
+          <?= $cap_title; ?>
+        </h1>
+        <img src="img/<?= $cap_thumbnail; ?>" />
+        <p class="desc">
+          <?= $cap_description; ?>
+        </p>
+    <?php
+      }
+    }
+    ?>
+
     <a href="#capital" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
   </div>
 </section>
 <!-- End of Capital Section -->
+
 <!-- City Section -->
 <section class="city" id="city">
   <!-- Title -->
