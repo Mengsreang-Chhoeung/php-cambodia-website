@@ -72,30 +72,28 @@ if (mysqli_num_rows($result) > 0) {
   <!-- End of Title -->
   <div class="detail">
     <!-- City Content -->
-    <div class="content-city">
-      <h2>Krong Siem Reap</h2>
-      <img src="img/image-3.jpg" />
-      <p class="desc">
-        Siem Reap (Khmer: ក្រុងសៀមរាប) is the capital city of Siem Reap
-        Province in northwestern Cambodia. Siem Reap has colonial and
-        Chinese-style architecture in the Old French Quarter and around
-        the Old Market.
-      </p>
-      <a href="#city" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
-    </div>
-    <!-- End of City Content -->
-    <!-- City Content -->
-    <div class="content-city">
-      <h2>Krong Kampong Cham</h2>
-      <img src="img/image-4.jpg" />
-      <p class="desc">
-        Kampong Cham Municipality (Khmer: ស្រុកកំពង់ចាម) is a municipality
-        (krong) of Kampong Cham Province, Cambodia. Kampong Cham is
-        considered an urban district. The provincial capital Kampong Cham
-        City is located in this district.
-      </p>
-      <a href="#city" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
-    </div>
+    <?php
+    $query = "SELECT cit.* FROM cities cit LIMIT 2";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        $cit_title = $row['title'];
+        $cit_description = $row['description'];
+        $cit_thumbnail = $row['thumbnail'];
+    ?>
+        <div class="content-city">
+          <h2><?= $cit_title; ?></h2>
+          <img src="img/<?= $cit_thumbnail; ?>" />
+          <p class="desc">
+            <?= $cit_description; ?>
+          </p>
+          <a href="#city" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
+        </div>
+    <?php
+      }
+    }
+    ?>
     <!-- End of City Content -->
   </div>
 </section>
