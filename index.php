@@ -73,7 +73,7 @@ if (mysqli_num_rows($result) > 0) {
   <div class="detail">
     <!-- City Content -->
     <?php
-    $query = "SELECT cit.* FROM cities cit LIMIT 2";
+    $query = "SELECT cit.title, cit.description, cit.thumbnail FROM cities cit LIMIT 2";
     $result = mysqli_query($conn, $query);
 
     if (mysqli_num_rows($result) > 0) {
@@ -98,6 +98,7 @@ if (mysqli_num_rows($result) > 0) {
   </div>
 </section>
 <!-- End of City Section -->
+
 <!-- Province Section -->
 <section class="province" id="province">
   <!-- Title -->
@@ -108,52 +109,34 @@ if (mysqli_num_rows($result) > 0) {
   <!-- End of Title -->
   <div class="detail">
     <!-- Province Content -->
-    <div class="content-province">
-      <h2>Mondulkiri Province</h2>
-      <img src="img/image-5.jpg" />
-      <p class="desc">
-        Mondulkiri(Khmer: មណ្ឌលគិរី), is a province (khaet) of Cambodia.
-        Bordering the provinces of Kratié to the west, Stung Treng to the
-        northwest, Ratanakiri to the north and the country of Vietnam to
-        the east and south, it is the most sparsely populated province in
-        the country despite being the largest in land area.
-      </p>
-      <a href="#province" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
-    </div>
-    <!-- End of Province Content -->
-    <!-- Province Content -->
-    <div class="content-province">
-      <h2>Ratanakiri Province</h2>
-      <img src="img/image-6.jpg" />
-      <p class="desc">
-        Ratanakiri(Khmer: រតនគិរី), is a province of northeast Cambodia.
-        It borders the provinces of Mondulkiri to the south and Stung
-        Treng to the west and the countries of Laos and Vietnam to the
-        north and east, respectively. The province extends from the
-        mountains of the Annamite Range in the north, across a hilly
-        plateau between the Tonle San and Tonle Srepok rivers.
-      </p>
-      <a href="#province" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
-    </div>
-    <!-- End of Province Content -->
-    <!-- Province Content -->
-    <div class="content-province">
-      <h2>Battambang Province</h2>
-      <img src="img/image-7.jpg" />
-      <p class="desc">
-        Battambang(Khmer: បាត់ដំបង) is a province (khaet) of Cambodia in
-        the far northwest of the country. Bordering provinces are Banteay
-        Meanchey to the north, Pursat to the east and south, Siem Reap to
-        the northeast, and Pailin to the west. The northern and southern
-        extremes of the province's western boundaries form part of the
-        international border with Thailand.
-      </p>
-      <a href="#province" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
-    </div>
+    <?php
+    $query = "SELECT pro.title, pro.description, pro.thumbnail FROM provinces pro LIMIT 3";
+    $result = mysqli_query($conn, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+      while ($row = mysqli_fetch_assoc($result)) {
+        $pro_title = $row['title'];
+        $pro_description = $row['description'];
+        $pro_thumbnail = $row['thumbnail'];
+    ?>
+        <div class="content-province">
+          <h2><?= $pro_title; ?></h2>
+          <img src="img/<?= $pro_thumbnail; ?>" />
+          <p class="desc">
+            <?= $pro_description; ?>
+          </p>
+          <a href="#province" class="btn" style="margin-right: auto;">See More <i class="fas fa-chevron-right"></i></a>
+        </div>
+    <?php
+      }
+    }
+
+    ?>
     <!-- End of Province Content -->
   </div>
 </section>
 <!-- End of Province Section -->
+
 <!-- About Section -->
 <section class="about" id="about">
   <!-- Title -->
